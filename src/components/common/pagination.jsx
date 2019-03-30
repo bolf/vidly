@@ -2,18 +2,33 @@ import React, { Component } from "react";
 import _ from "lodash";
 
 const Pagination = props => {
-  const { itemsCount, pageSize } = props;
+  const { itemsCount, pageSize, currentPage, onPageChange } = props;
 
-  const pageCount = itemsCount / pageSize;
+  const pageCount = Math.ceil(itemsCount / pageSize);
+
+  if (pageCount === 1) return null;
+
   const pages = _.range(1, pageCount + 1); //crates array
 
   return (
     <nav aria-label="...">
-      <ul class="pagination">
+      <ul className="pagination">
         {pages.map(page => {
           return (
-            <li class="page-item">
-              <a class="page-link">{page}</a>
+            <li
+              key={page}
+              className={
+                "page-item" + (props.currentPage === page ? " active" : "")
+              }
+            >
+              <a
+                className="page-link"
+                onClick={() => {
+                  onPageChange(page);
+                }}
+              >
+                {page}
+              </a>
             </li>
           );
         })}
