@@ -25,8 +25,10 @@ const Filtering = props => {
   );
 };
 
-/*{
-  
-}*/
+Filtering.defaultProps = {
+  //default values of props that can be used in this omponent
+  //упрощение интерфеса компонента
+  //устанавливается отдельно: npm i prop-types@15.6.2
+};
 
 export default Filtering;
