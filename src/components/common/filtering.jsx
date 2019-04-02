@@ -1,5 +1,4 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
+import React from "react";
 
 const Filtering = props => {
   const { onGenreFilterChange, choosenGenreFilter, allGenres } = props;
@@ -23,12 +22,6 @@ const Filtering = props => {
       })}
     </ul>
   );
-};
-
-Filtering.defaultProps = {
-  //default values of props that can be used in this omponent
-  //упрощение интерфеса компонента
-  //устанавливается отдельно: npm i prop-types@15.6.2
 };
 
 export default Filtering;

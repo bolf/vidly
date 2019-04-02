@@ -13,7 +13,7 @@ class Movies extends Component {
     pageSize: 6,
     currentPage: 1,
     choosenGenreFilter: getGenres()[0],
-    sortingColumn: { path: "title", order: "asc" }
+    sortingColumn: { path: "title", order: "desc" }
   };
 
   handleDelete = movieFoorDeleting => {
@@ -49,12 +49,11 @@ class Movies extends Component {
 
   handleFilteringByGenre = genre => {
     if (this.state.choosenGenreFilter === genre) return;
+    var movies_tmp;
     if (genre.name === "All Genres") {
-      var movies_tmp = getMovies();
+      movies_tmp = getMovies();
     } else {
-      var movies_tmp = getMovies().filter(
-        movie => movie.genre._id === genre._id
-      );
+      movies_tmp = getMovies().filter(movie => movie.genre._id === genre._id);
     }
     this.setState({
       movies: movies_tmp,
@@ -63,19 +62,14 @@ class Movies extends Component {
     });
   };
 
-  handleSorting = sortColumn => {
+  handleSorting = sortingColumn => {
     //const sortColumn = { ...this.state.sortingColumn }; //clone the array
-    let order = "asc";
-    if (this.state.sortingColumn.path === sortColumn) {
-      order = this.state.sortingColumn.order ? "asc" : "dsc";
-    }
-
     this.setState({
-      sortingColumn: { path: sortColumn, order: order },
+      sortingColumn: { path: sortingColumn.path, order: sortingColumn.order },
       movies: _.orderBy(
         this.state.movies,
-        [sortColumn],
-        [this.state.sortingColumn.order]
+        [sortingColumn.path],
+        [sortingColumn.order]
       )
     });
   };
@@ -99,11 +93,13 @@ class Movies extends Component {
             <h1>{this.getNumberOfMovies()}</h1>
             <MoviesTable
               movies={this.state.movies}
+              sortingColumn={this.state.sortingColumn}
               currentPage={this.state.currentPage}
               pageSize={this.state.pageSize}
               onLikeClick={this.handleLikeClick}
               onDelete={this.handleDelete}
               onSort={this.handleSorting}
+              sortingOrder={this.state.sortingColumn.order}
             />
             <Pagination
               itemsCount={this.state.movies.length}

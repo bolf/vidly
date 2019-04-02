@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import _ from "lodash";
 import PropTypes from "prop-types";
 
@@ -18,18 +18,16 @@ const Pagination = props => {
           return (
             <li
               key={page}
-              className={
-                "page-item" + (props.currentPage === page ? " active" : "")
-              }
+              className={"page-item" + (currentPage === page ? " active" : "")}
             >
-              <a
+              <span
                 className="page-link"
                 onClick={() => {
                   onPageChange(page);
                 }}
               >
                 {page}
-              </a>
+              </span>
             </li>
           );
         })}
@@ -38,6 +36,9 @@ const Pagination = props => {
   );
 };
 
+//default values of props that can be used in this omponent
+//упрощение интерфеса компонента
+//устанавливается отдельно: npm i prop-types@15.6.2
 Pagination.propTypes = {
   itemsCount: PropTypes.number.isRequired,
   pageSize: PropTypes.number.isRequired,
