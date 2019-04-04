@@ -62,14 +62,14 @@ class Movies extends Component {
     });
   };
 
-  handleSorting = sortingColumn => {
-    //const sortColumn = { ...this.state.sortingColumn }; //clone the array
+  handleSorting = sortColumn => {
+    //console.log("from_movies", sortingColumn);
     this.setState({
-      sortingColumn: { path: sortingColumn.path, order: sortingColumn.order },
+      sortingColumn: { ...sortColumn },
       movies: _.orderBy(
         this.state.movies,
-        [sortingColumn.path],
-        [sortingColumn.order]
+        [sortColumn.path],
+        [sortColumn.order]
       )
     });
   };
