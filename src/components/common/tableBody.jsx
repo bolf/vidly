@@ -28,20 +28,3 @@ class TableBody extends Component {
 }
 
 export default TableBody;
-
-/* <td>{row.title}</td>
-              <td>{row.genre.name}</td>
-              <td>{row.numberInStock}</td>
-              <td>{row.dailyRentalRate}</td>
-              <td className="text-center">
-                <Like liked={row.liked} onClick={onLikeClick} _id={row._id} />
-              </td>
-              <td className="text-center">
-                <button
-                  className="btn btn-outline-danger btn-sm"
-                  onClick={() => onDelete(row)}
-                >
-                  Delete
-                </button>
-              </td>
-            </tr> */

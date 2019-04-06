@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import TableHeader from "./common/tableHeader";
-import TableBody from "./common/tableBody";
+import Table from "./common/table";
 import { paginate } from "../utils/paginate";
 import Like from "./common/like";
 
@@ -37,14 +36,12 @@ class MoviesTable extends Component {
     const { movies, currentPage, pageSize, sortingColumn, onSort } = this.props; //декларация интерфейса компонента
     const paginatedMovies = paginate(movies, currentPage, pageSize);
     return (
-      <table className="table table-bordered">
-        <TableHeader
-          columns={this.columns}
-          sortingColumn={sortingColumn}
-          onSort={onSort}
-        />
-        <TableBody rows={paginatedMovies} columns={this.columns} />
-      </table>
+      <Table
+        columns={this.columns}
+        sortingColumn={sortingColumn}
+        onSort={onSort}
+        rows={paginatedMovies}
+      />
     );
   }
 }

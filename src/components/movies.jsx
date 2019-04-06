@@ -13,7 +13,7 @@ class Movies extends Component {
     pageSize: 6,
     currentPage: 1,
     choosenGenreFilter: getGenres()[0],
-    sortingColumn: { path: "title", order: "desc" }
+    sortingColumn: { path: "title", order: "asc" }
   };
 
   handleDelete = movieFoorDeleting => {
@@ -76,7 +76,14 @@ class Movies extends Component {
 
   componentDidMount() {
     //const genres = [{name: "Alll Genres"}, ...getGenres()]
-    this.setState({ movies: getMovies(), genres: getGenres() });
+    this.setState({
+      movies: _.orderBy(
+        getMovies(),
+        [this.state.sortingColumn.path],
+        [this.state.sortingColumn.order]
+      ),
+      genres: getGenres()
+    });
   }
 
   render() {
