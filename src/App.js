@@ -6,6 +6,7 @@ import { Route, Switch, Redirect } from "react-router-dom";
 import Customers from "./components/customers";
 import Rentals from "./components/rentals";
 import NotFound from "./components/notFound";
+import MovieForm from "./components/movieForm";
 
 class App extends Component {
   render() {
@@ -14,10 +15,11 @@ class App extends Component {
         <NavBar />
         <main className="container">
           <Switch>
-            <Route path="/" exact component={Movies} />
+            <Route path="/movies/:_id" component={MovieForm} />
             <Route path="/movies" component={Movies} />
             <Route path="/customers" component={Customers} />
             <Route path="/rentals" component={Rentals} />
+            <Route path="/" exact component={Movies} />
             <Route path="/not-found" component={NotFound} />
             <Redirect to="not-found" />
           </Switch>

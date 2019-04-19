@@ -5,8 +5,6 @@ import Pagination from "./common/pagination";
 import Filtering from "./common/filtering";
 import MoviesTable from "./moviesTable";
 import _ from "lodash";
-import Navbar from "./common/navbar";
-import { Switch } from "react-router-dom";
 
 class Movies extends Component {
   state = {
