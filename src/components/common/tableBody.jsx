@@ -6,11 +6,7 @@ class TableBody extends Component {
   renderCell = (row, column) => {
     if (column.content) return column.content(row);
 
-    if (column.path === "title") {
-      return <Link to={"/movies/" + row._id}>{_.get(row, column.path)}</Link>;
-    } else {
-      return _.get(row, column.path);
-    }
+    return _.get(row, column.path);
   };
 
   render() {
