@@ -5,6 +5,7 @@ import Pagination from "./common/pagination";
 import Filtering from "./common/filtering";
 import MoviesTable from "./moviesTable";
 import _ from "lodash";
+import { Link } from "react-router-dom";
 
 class Movies extends Component {
   state = {
@@ -97,6 +98,10 @@ class Movies extends Component {
             allGenres={this.state.genres}
           />
           <div className="col">
+            <Link className="btn btn-primary" to={"/movies/new"}>
+              New Movie
+            </Link>
+
             <h1>{this.getNumberOfMovies()}</h1>
             <MoviesTable
               movies={this.state.movies}
