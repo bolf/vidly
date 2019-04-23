@@ -39,11 +39,11 @@ class MovieForm extends Form {
   componentDidMount() {
     const genres = getGenres();
     this.setState({ genres });
+
     const movie_id = this.props.match.params["_id"];
     if (movie_id === "new") return;
 
     const movie = getMovie(movie_id);
-
     if (!movie) return this.props.history.replace("/not-found");
 
     this.setState({ data: this.mapToViewModel(movie) });
@@ -63,6 +63,7 @@ class MovieForm extends Form {
     saveMovie(this.state.data);
     this.props.history.push("/movies");
   };
+
   render() {
     return (
       <div>

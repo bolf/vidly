@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import Table from "./common/table";
-import { paginate } from "../utils/paginate";
-import Like from "./common/like";
 import { Link } from "react-router-dom";
+import Table from "./common/table";
+import Like from "./common/like";
 
 class MoviesTable extends Component {
   columns = [
@@ -16,20 +15,16 @@ class MoviesTable extends Component {
     { path: "dailyRentalRate", label: "Rate" },
     {
       key: "like",
-      content: row => (
-        <Like
-          liked={row.liked}
-          onClick={this.props.onLikeClick}
-          _id={row._id}
-        />
+      content: movie => (
+        <Like liked={movie.liked} onClick={() => this.props.onLike(movie)} />
       )
     },
     {
       key: "delete",
-      content: row => (
+      content: movie => (
         <button
-          className="btn btn-outline-danger btn-sm"
-          onClick={() => this.props.onDelete(row)}
+          onClick={() => this.props.onDelete(movie)}
+          className="btn btn-danger btn-sm"
         >
           Delete
         </button>
@@ -38,16 +33,17 @@ class MoviesTable extends Component {
   ];
 
   render() {
-    const { movies, currentPage, pageSize, sortingColumn, onSort } = this.props; //декларация интерфейса компонента
-    const paginatedMovies = paginate(movies, currentPage, pageSize);
+    const { movies, onSort, sortColumn } = this.props;
+
     return (
       <Table
         columns={this.columns}
-        sortingColumn={sortingColumn}
+        rows={movies}
+        sortColumn={sortColumn}
         onSort={onSort}
-        rows={paginatedMovies}
       />
     );
   }
 }
+
 export default MoviesTable;

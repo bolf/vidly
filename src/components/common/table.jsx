@@ -7,7 +7,7 @@ const Table = props => {
     <table className="table table-bordered">
       <TableHeader
         columns={props.columns}
-        sortingColumn={props.sortingColumn}
+        sortColumn={props.sortColumn}
         onSort={props.onSort}
       />
       <TableBody rows={props.rows} columns={props.columns} />
